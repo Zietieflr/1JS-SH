@@ -4,28 +4,31 @@ fetch('http://bagel-api-fis.herokuapp.com/bagels')
   .then(result => handleData(result))
 
   function handleData(data){
-    data.forEach(bagel => createCard(data))
+    data.forEach(bagel => createCard(bagel['type'], bagel['rating']))
   }
 
-  const bagelList = document.querySelector('#bagelsList')
+  const bagelsList = document.querySelector('#bagelsList')
+
   function createCard(type, rating){
     const card = document.createElement('li')
-    renderBagelType(type, card)
-    renderBagelRating(rating, card)
-    card.append(renderBagelType, )
-    bagelList.appendChild(card)
+    // renderBagelType(type, card)
+    // renderBagelRating(rating, card)
+    card.append(renderBagelType(type), renderBagelRating(rating))
+    bagelsList.appendChild(card)
   }
 
   
   //create, manipulate, append
-  function renderBagelType(data, card){
+  function renderBagelType(data){
+    console.log('type', data)
     const bagelTypeInfo = document.createElement('li')
-    return bagelTypeInfo.textContent = data
+    return bagelTypeInfo.innerHTML = data
     // bagelList.appendChild(bagelTypeInfo)
   }
 
-  function renderBagelRating(data, card){
+  function renderBagelRating(data){
+    console.log('rating', data)
     const bagelRating = document.createElement('li')
-    return bagelRating.innerHtML = data
+    return bagelRating.innerHTML = data
     // bagelList.appendChild(bagelRating)
   }
